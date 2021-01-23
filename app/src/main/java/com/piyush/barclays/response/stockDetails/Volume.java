@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Volume {
 
-    @SerializedName("raw")
-    @Expose
-    private Integer raw;
+//    @SerializedName("raw")
+//    @Expose
+//    private Integer raw;
     @SerializedName("fmt")
     @Expose
     private String fmt;
@@ -16,13 +16,13 @@ public class Volume {
     @Expose
     private String longFmt;
 
-    public Integer getRaw() {
-        return raw;
-    }
+//    public Integer getRaw() {
+//        return raw;
+//    }
 
-    public void setRaw(Integer raw) {
-        this.raw = raw;
-    }
+//    public void setRaw(Integer raw) {
+//        this.raw = raw;
+//    }
 
     public String getFmt() {
         return fmt;

@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 class SearchViewModel : MyBaseViewModel() {
     var searchLiveData: MutableLiveData<ArrayList<Quote>> = MutableLiveData()
     var emptyLiveData: MutableLiveData<String> = MutableLiveData()
-    var stockDetailsLiveData: MutableLiveData<StockDetails> = MutableLiveData()
      var searchJob : Job? = null
 
     fun searchStocks(query: String) {
@@ -36,18 +35,5 @@ class SearchViewModel : MyBaseViewModel() {
         }
     }
 
-    fun searchStockDetails(query: String) {
-       isLoading.postValue(LoaderStatus.loading)
-        CoroutineScope(exceptionHandler).launch {
-            val request = RetrofitManager.getInstance().getEndPointAPI().getStockDetails(query, "US")
-            val response = request.await()
 
-            if (isResponseSuccess(response)) {
-                val apiResponse = response.body()!!
-                stockDetailsLiveData.postValue(apiResponse)
-
-                isLoading.postValue(LoaderStatus.success)
-            }
-        }
-    }
 }

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : MyBaseFragment() {
+class PlaceholderFragment : MyBaseFragment(), RecommendationAdapter.ItemClickListener {
 
     private val recomondationList : ArrayList<Quote> = ArrayList()
     private var recomendationAdapter: RecommendationAdapter? = null
@@ -60,7 +60,7 @@ class PlaceholderFragment : MyBaseFragment() {
             false
         )
         homeRecyclerView.layoutManager = linearLayoutManager
-        recomendationAdapter = RecommendationAdapter(activity!!,recomondationList)
+        recomendationAdapter = RecommendationAdapter(activity!!,recomondationList, this)
         homeRecyclerView.adapter = recomendationAdapter
 
 
@@ -68,7 +68,7 @@ class PlaceholderFragment : MyBaseFragment() {
 
     override fun onResume() {
         super.onResume()
-       // viewModel.getRecommendation()
+        viewModel.getRecommendation()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,5 +107,11 @@ class PlaceholderFragment : MyBaseFragment() {
                 }
             }
         }
+    }
+
+    override fun onClick(position: Int) {
+        val item = recomondationList[position]
+        super.showProgress()
+        item.symbol?.let { viewModel.searchStockDetails(it) }
     }
 }

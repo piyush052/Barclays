@@ -8,7 +8,7 @@ public class PriceHint {
 
     @SerializedName("raw")
     @Expose
-    private Integer raw;
+    private Long raw;
     @SerializedName("fmt")
     @Expose
     private String fmt;
@@ -16,11 +16,11 @@ public class PriceHint {
     @Expose
     private String longFmt;
 
-    public Integer getRaw() {
+    public Long getRaw() {
         return raw;
     }
 
-    public void setRaw(Integer raw) {
+    public void setRaw(Long raw) {
         this.raw = raw;
     }
 

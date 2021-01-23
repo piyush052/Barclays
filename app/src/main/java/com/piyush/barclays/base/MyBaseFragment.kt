@@ -21,6 +21,7 @@ import com.piyush.barclays.R
 import com.piyush.barclays.api.SharedPrefManager
 import com.piyush.barclays.enums.ErrorMessageType
 import com.piyush.barclays.enums.LoaderStatus
+import com.piyush.barclays.ui.details.DetailBottomSheet
 
 abstract class MyBaseFragment : Fragment() {
     protected val TAG = this.javaClass.simpleName
@@ -89,6 +90,18 @@ abstract class MyBaseFragment : Fragment() {
                 onErrorCalled(updatedErrorMessage)
             }
         })
+
+        viewModel.stockDetailsLiveData.observe(this, {
+            hideProgress()
+            val stockDetails = it
+            activity!!.supportFragmentManager.let {
+                DetailBottomSheet.newInstance(stockDetails).apply {
+                    show(it, tag)
+                }
+            }
+
+        })
+
         initObservers()
     }
 

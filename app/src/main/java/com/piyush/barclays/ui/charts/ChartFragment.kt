@@ -53,7 +53,7 @@ class ChartFragment : MyBaseFragment() {
                 .format("\${%Value}{groupsSeparator: }")
 
             cartesian.animation(true)
-            cartesian.title("Top 10 Cosmetic Products by Revenue")
+            cartesian.title("${symbol} History")
 
             cartesian.yScale().minimum(0.0)
 
@@ -62,8 +62,8 @@ class ChartFragment : MyBaseFragment() {
             cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
             cartesian.interactivity().hoverMode(HoverMode.BY_X)
 
-            cartesian.xAxis(0).title("Product")
-            cartesian.yAxis(0).title("Revenue")
+            cartesian.xAxis(0).title("Time")
+            cartesian.yAxis(0).title("Price in $")
 
             any_chart_view.setChart(cartesian)
 

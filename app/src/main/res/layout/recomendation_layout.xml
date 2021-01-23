@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/parentLayout"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_8dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
         android:padding="@dimen/_8dp"
         android:layout_height="match_parent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/c_name"
-            android:textSize="@dimen/_16sp"
             android:text="Comapany Name "
             />
 
@@ -21,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:id="@+id/price"
+            android:textSize="12sp"
             android:text="price"
             />
         <TextView
@@ -28,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8dp"
             android:id="@+id/stockName"
-            android:textSize="@dimen/_16sp"
             android:layout_below="@+id/c_name"
             android:text="Stock market name "
             />
@@ -40,6 +41,7 @@
             android:layout_below="@+id/price"
             android:id="@+id/percentChange"
             android:text="%change"
+            android:textSize="12sp"
             />
 
 

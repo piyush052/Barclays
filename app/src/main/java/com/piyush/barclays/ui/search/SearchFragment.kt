@@ -42,16 +42,6 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
             emptyText.text = it
 
         })
-        viewModel.stockDetailsLiveData.observe(this, {
-            super.hideProgress()
-            val stockDetails = it
-            activity!!.supportFragmentManager.let {
-                DetailBottomSheet.newInstance(stockDetails).apply {
-                    show(it, tag)
-                }
-            }
-
-        })
 
     }
 
@@ -150,6 +140,6 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
     override fun onClick(position: Int) {
         val item = searchList[position]
         super.showProgress()
-        item.exchange?.let { viewModel.searchStockDetails(it) }
+        item.symbol?.let { viewModel.searchStockDetails(it) }
     }
 }
