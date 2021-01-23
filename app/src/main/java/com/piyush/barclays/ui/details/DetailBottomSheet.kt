@@ -3,6 +3,7 @@ package com.piyush.barclays.ui.details
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -13,7 +14,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.piyush.barclays.R
+import com.piyush.barclays.constants.AppConstants
 import com.piyush.barclays.response.stockDetails.StockDetails
+import com.piyush.barclays.ui.charts.ChartActivity
 import kotlinx.android.synthetic.main.detail_bottom_sheet.*
 
 
@@ -49,6 +52,15 @@ class DetailBottomSheet: BottomSheetDialogFragment()  {
 
         regularMarketOpen.text=  "Regular Market Open "+ stockDetails.summaryDetail?.regularMarketOpen?.fmt?.toString()
         twoHundredDayAverage.text= "200 Day Avg "+stockDetails.summaryDetail?.twoHundredDayAverage?.fmt?.toString()
+
+
+        chartButton.setOnClickListener {
+            if(activity!=null) {
+                val intent = Intent(activity!!, ChartActivity::class.java)
+                intent.putExtra(AppConstants.SYMBOL, stockDetails?.symbol)
+                activity!!.startActivity(intent)
+            }
+        }
 
     }
 

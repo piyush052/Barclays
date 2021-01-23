@@ -60,7 +60,7 @@ class PlaceholderFragment : MyBaseFragment() {
             false
         )
         homeRecyclerView.layoutManager = linearLayoutManager
-        recomendationAdapter = RecommendationAdapter(recomondationList)
+        recomendationAdapter = RecommendationAdapter(activity!!,recomondationList)
         homeRecyclerView.adapter = recomendationAdapter
 
 

@@ -1,5 +1,6 @@
 package com.piyush.barclays.api
 
+import com.piyush.barclays.response.chart.ChartResponse
 import com.piyush.barclays.response.recomondation.Recomondation
 import com.piyush.barclays.response.search.Search
 import com.piyush.barclays.response.stockDetails.StockDetails
@@ -26,5 +27,13 @@ interface ApiEndPoints {
 
     @GET("stock/v2/get-profile")
     fun getStockDetails(@Query("symbol") symbol: String,  @Query("region") region: String): Deferred<Response<StockDetails>>
+
+ @GET("market/get-charts")
+    fun getChartData(
+     @Query("symbol") symbol: String,
+     @Query("interval") interval: String,
+     @Query("range") range: String,
+                     @Query("region") region: String)
+    : Deferred<Response<ChartResponse>>
 
 }

@@ -24,7 +24,7 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
     private val searchList: ArrayList<Quote> = ArrayList()
     private var searchAdapter: SearchAdapter? = null
     override fun onErrorCalled(it: String?) {
-        emptyText.visibility = View.VISIBLE
+       // emptyText.visibility = View.VISIBLE
     }
 
     override fun initObservers() {
@@ -114,8 +114,13 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString().length > 2)
+                if (p0.toString().length > 2) {
+                    val bool = viewModel.searchJob?.isActive
+                    if (bool == true) {
+                        viewModel.searchJob?.cancel()
+                    }
                     viewModel.searchStocks(p0.toString())
+                }
             }
 
             override fun afterTextChanged(p0: Editable?) {

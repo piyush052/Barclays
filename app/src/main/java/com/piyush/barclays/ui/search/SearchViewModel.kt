@@ -8,16 +8,18 @@ import com.piyush.barclays.enums.LoaderStatus
 import com.piyush.barclays.response.search.Quote
 import com.piyush.barclays.response.stockDetails.StockDetails
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class SearchViewModel : MyBaseViewModel() {
     var searchLiveData: MutableLiveData<ArrayList<Quote>> = MutableLiveData()
     var emptyLiveData: MutableLiveData<String> = MutableLiveData()
     var stockDetailsLiveData: MutableLiveData<StockDetails> = MutableLiveData()
+     var searchJob : Job? = null
 
     fun searchStocks(query: String) {
        isLoading.postValue(LoaderStatus.loading)
-        CoroutineScope(exceptionHandler).launch {
+        searchJob =   CoroutineScope(exceptionHandler).launch {
             val request = RetrofitManager.getInstance().getEndPointAPI().searchStocks(query, "US")
             val response = request.await()
 

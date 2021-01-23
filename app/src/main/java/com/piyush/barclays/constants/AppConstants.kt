@@ -1,6 +1,7 @@
 package com.piyush.barclays.constants
 
 object AppConstants {
+    val SYMBOL = "SYMBOL"
     val OOPs: String= "OOPs did not find anything!!\n try something new :)"
     val LOGIN_ACCESS_TOKEN: String= ""
     const val loginResult = 1001

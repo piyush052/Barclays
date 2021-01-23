@@ -59,7 +59,7 @@ class Quote {
 
     @SerializedName("postMarketChange")
     @Expose
-    var postMarketChange: Double? = null
+    var postMarketChange: Double = 0.0
 
     @SerializedName("regularMarketChangePercent")
     @Expose
