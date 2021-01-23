@@ -6,17 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.piyush.barclays.R
+import com.piyush.barclays.adapters.RecommendationAdapter
 import com.piyush.barclays.base.MyBaseFragment
+import com.piyush.barclays.response.recomondation.Quote
 import com.piyush.barclays.ui.home.viewModel.MainViewModel
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : MyBaseFragment() {
+
+    private val recomondationList : ArrayList<Quote> = ArrayList()
+    private var recomendationAdapter: RecommendationAdapter? = null
 
     private lateinit var pageViewModel: PageViewModel
     override fun onErrorCalled(it: String?) {
@@ -24,7 +30,18 @@ class PlaceholderFragment : MyBaseFragment() {
     }
 
     override fun initObservers() {
-        Log.e(TAG, "onErrorCalled: " )
+        viewModel.recomondationLiveData.observe(this, Observer {
+            recomondationList.clear()
+            recomondationList.addAll(it)
+            homeRecyclerView.visibility= View.VISIBLE
+            emptyTextFra.visibility = View.GONE
+            recomendationAdapter?.notifyDataSetChanged()
+
+        })
+        viewModel.emptyLiveData.observe(this, Observer {
+            homeRecyclerView.visibility= View.GONE
+            emptyTextFra.visibility = View.VISIBLE
+        })
     }
 
     private lateinit var viewModel: MainViewModel
@@ -32,18 +49,26 @@ class PlaceholderFragment : MyBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpLoader(viewModel)
+        initViews()
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    private fun initViews() {
+        val linearLayoutManager = LinearLayoutManager(
+            activity!!,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+        homeRecyclerView.layoutManager = linearLayoutManager
+        recomendationAdapter = RecommendationAdapter(recomondationList)
+        homeRecyclerView.adapter = recomendationAdapter
+
 
     }
 
     override fun onResume() {
         super.onResume()
-      //  viewModel.getStocks()
-        viewModel.getRecommendation()
+       // viewModel.getRecommendation()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +83,8 @@ class PlaceholderFragment : MyBaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
-        })
+
+
         return root
     }
 

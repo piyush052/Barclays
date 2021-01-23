@@ -1,19 +1,14 @@
 package com.piyush.barclays.base
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.piyush.barclays.response.ErrorResponse
 import com.piyush.barclays.enums.LoaderStatus
+import com.piyush.barclays.response.ErrorResponse
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import org.json.JSONObject
 import retrofit2.Response
 import kotlin.coroutines.CoroutineContext
 

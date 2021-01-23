@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.search.SearchActivity"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:id="@+id/watchListSearchET"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            android:textColorHint="@color/hint_color"
+            android:drawablePadding="@dimen/_8dp"
+            android:padding="@dimen/_8dp"
+            android:background="@drawable/search_edit_text_background"
+            android:hint="@string/search"
+
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_16dp"
+            android:visibility="gone"
+            android:id="@+id/watchListRecyclerView"
+            />
+
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:id="@+id/emptyText"
+        android:text="@string/search_stocks_to_add_into_your_watchlist"
+        />
+
+</RelativeLayout>

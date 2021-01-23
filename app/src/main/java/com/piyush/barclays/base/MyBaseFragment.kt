@@ -155,7 +155,7 @@ abstract class MyBaseFragment : Fragment() {
         }
     }
 
-    fun showProgress() {
+   protected open fun showProgress() {
         hideKeyboard()
         if (mBaseView == null) {
             futureShowProgress = true
@@ -168,7 +168,7 @@ abstract class MyBaseFragment : Fragment() {
         }
     }
 
-    fun hideProgress() {
+    protected open fun hideProgress() {
         futureShowProgress = false
         if (progressShown) {
             mBaseView?.removeView(mLoaderView)
