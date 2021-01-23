@@ -37,7 +37,13 @@ class PlaceholderFragment : MyBaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getStocks()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+      //  viewModel.getStocks()
+        viewModel.getRecommendation()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

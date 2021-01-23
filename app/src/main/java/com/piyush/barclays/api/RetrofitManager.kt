@@ -33,6 +33,8 @@ class RetrofitManager ()  {
 
             val interceptor = Interceptor { chain ->
                 val request = chain.request().newBuilder()
+                    .header("x-rapidapi-key", "0f6eed49d2msh2c14b335aa0af9dp1a98afjsn9457146ddb08")
+                    .header("x-rapidapi-host", "apidojo-yahoo-finance-v1.p.rapidapi.com")
                     .build()
 
                 chain.proceed(request)

@@ -16,6 +16,19 @@ class MainViewModel : MyBaseViewModel(){
 
             if (isResponseSuccess(response)) {
                 val apiResponse = response.body()!!
+                isLoading.postValue(LoaderStatus.success)
+            }
+        }
+    }
+
+    fun getRecommendation() {
+        isLoading.postValue(LoaderStatus.loading)
+        CoroutineScope(exceptionHandler).launch {
+            val request = RetrofitManager.getInstance().getEndPointAPI().getRecommendation("INTC")
+            val response = request.await()
+
+            if (isResponseSuccess(response)) {
+                val apiResponse = response.body()!!
 
 
                 isLoading.postValue(LoaderStatus.success)

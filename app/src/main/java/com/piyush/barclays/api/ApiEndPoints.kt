@@ -3,6 +3,8 @@ package com.piyush.barclays.api
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiEndPoints {
@@ -11,5 +13,13 @@ interface ApiEndPoints {
 
     @GET("/v2/get-financials")
     fun getFinanicial(@Query("symbol") symbol:String, @Query("region") region:String )  : Deferred<Response<Any>>
+
+    //@Header("x-rapidapi-key : 0f6eed49d2msh2c14b335aa0af9dp1a98afjsn9457146ddb08")
+//    @Headers("x-rapidapi-key : 0f6eed49d2msh2c14b335aa0af9dp1a98afjsn9457146ddb08",
+//        "x-rapidapi-host : apidojo-yahoo-finance-v1.p.rapidapi.com",
+//        "useQueryString : true"
+//    )
+    @GET("v2/get-recommendations")
+    fun getRecommendation(@Query("symbol") symbol:String)  : Deferred<Response<Any>>
 
 }
