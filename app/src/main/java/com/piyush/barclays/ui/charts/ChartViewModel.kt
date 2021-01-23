@@ -10,21 +10,22 @@ import kotlinx.coroutines.launch
 class ChartViewModel : MyBaseViewModel() {
     var chartLiveData: MutableLiveData<ChartData> = MutableLiveData()
 
-    fun getChartData(query: String) {
+    fun getChartData(query: String, interval: String = "1d", range: String = "1yr") {
         isLoading.postValue(LoaderStatus.loading)
         CoroutineScope(exceptionHandler).launch {
             val request = RetrofitManager.getInstance().getEndPointAPI().getChartData(
                 query,
-                "1d",
-                "1y",
+                interval,
+                range,
                 "US"
             )
             val response = request.await()
 
             if (isResponseSuccess(response)) {
                 val apiResponse = response.body()!!
-                var high : ArrayList<Double> = apiResponse.chart.result[0].indicators.quote[0].high as ArrayList<Double>
-                var x :ArrayList<Int> = apiResponse.chart.result[0].timestamp as ArrayList<Int>
+                var high: ArrayList<Double> =
+                    apiResponse.chart.result[0].indicators.quote[0].high as ArrayList<Double>
+                var x: ArrayList<Int> = apiResponse.chart.result[0].timestamp as ArrayList<Int>
                 chartLiveData.postValue(ChartData(x, high))
                 isLoading.postValue(LoaderStatus.success)
             }
@@ -32,6 +33,5 @@ class ChartViewModel : MyBaseViewModel() {
     }
 
 
-
-    data class ChartData(val time :ArrayList<Int>, val value:  ArrayList<Double>)
+    data class ChartData(val time: ArrayList<Int>, val value: ArrayList<Double>)
 }

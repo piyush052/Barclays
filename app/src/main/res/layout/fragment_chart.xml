@@ -30,4 +30,13 @@
         android:id="@+id/backButton"
         android:layout_margin="@dimen/_4dp"
         />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_filter"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/_16dp"
+        android:id="@+id/filterButton"
+        android:layout_margin="@dimen/_4dp"
+        />
 </RelativeLayout>

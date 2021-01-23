@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_16dp"
+        android:text="@string/select_range"
+        android:textSize="@dimen/_18sp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_16dp"
+        android:id="@+id/radioGrp"
+        android:paddingBottom="@dimen/_32dp"
+        android:paddingEnd="@dimen/_16dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/_1day"
+            android:text="@string/_1_day" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/_5day"
+            android:text="@string/_5_day" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/_6months"
+            android:text="@string/_6_months" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:id="@+id/_1yr"
+            android:layout_height="wrap_content"
+            android:text="@string/_1_year" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/_5yr"
+            android:text="@string/_5_year" />
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -25,8 +25,8 @@ class SearchAdapter (var list : ArrayList<Quote>, var type: ItemClickListener): 
     }
 
     override fun onBindViewHolder(holder: SearchAdapterViewHolder, position: Int) {
-        holder.cName.text = list[position].shortname
-        holder.stockName.text = list[position].exchange
+        holder.cName.text = list[position].shortname + "(${list[position].exchange})"
+        holder.stockName.text = list[position].score.toString()
         holder.itemLayout.setOnClickListener {
             type.onClick(position)
         }

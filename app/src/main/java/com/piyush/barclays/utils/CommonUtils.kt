@@ -8,6 +8,7 @@ class CommonUtils {
         fun getHour(timeStamp: Int): String {
             val date = Date(timeStamp * 1000L)
 //            val jdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//            val jdf = SimpleDateFormat("HH")
             val jdf = SimpleDateFormat("yyyy-MM-dd")
             jdf.setTimeZone(TimeZone.getTimeZone("GMT-4"))
             val javaDate: String = jdf.format(date)
