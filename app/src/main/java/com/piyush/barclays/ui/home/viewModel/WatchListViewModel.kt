@@ -11,8 +11,17 @@ class WatchListViewModel : MyBaseViewModel() {
     fun getWatchListData(data: HashMap<String, Watchlist>) {
         if (data.isEmpty()) emptyLiveData.postValue(true)
         else {
-            val list: ArrayList<Watchlist> = ArrayList();
+            val list: ArrayList<Watchlist> = ArrayList()
             list.addAll(data.values)
+            list.sortWith(object : Comparator<Watchlist> {
+                override fun compare(p0: Watchlist?, p1: Watchlist?): Int {
+                    if (p0 == null || p1 == null) {
+                        return 0
+                    }
+                    return p0.cName.compareTo(p1.cName)
+                }
+            })
+
             watchListViewModel.postValue(list)
         }
 

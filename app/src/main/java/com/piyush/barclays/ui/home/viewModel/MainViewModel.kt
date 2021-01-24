@@ -18,18 +18,18 @@ class MainViewModel : MyBaseViewModel() {
     var emptyLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
 
-    fun getStocks() {
-        isLoading.postValue(LoaderStatus.loading)
-        CoroutineScope(exceptionHandler).launch {
-            val request = RetrofitManager.getInstance().getEndPointAPI().getFinanicial("AMRN", "US")
-            val response = request.await()
-
-            if (isResponseSuccess(response)) {
-                val apiResponse = response.body()!!
-                isLoading.postValue(LoaderStatus.success)
-            }
-        }
-    }
+//    fun getStocks() {
+//        isLoading.postValue(LoaderStatus.loading)
+//        CoroutineScope(exceptionHandler).launch {
+//            val request = RetrofitManager.getInstance().getEndPointAPI().getFinanicial("AMRN", "US")
+//            val response = request.await()
+//
+//            if (isResponseSuccess(response)) {
+//                val apiResponse = response.body()!!
+//                isLoading.postValue(LoaderStatus.success)
+//            }
+//        }
+//    }
 
     fun getRecommendation() {
         isLoading.postValue(LoaderStatus.loading)

@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 import retrofit2.Response
 import kotlin.coroutines.CoroutineContext
 
-open class MyBaseViewModel : ViewModel(), CoroutineScope {
+open class MyBaseViewModel : ViewModel(), CoroutineScope  {
     override val coroutineContext: CoroutineContext get() = Dispatchers.IO + rootJob
 
     protected val TAG: String = this.javaClass.simpleName

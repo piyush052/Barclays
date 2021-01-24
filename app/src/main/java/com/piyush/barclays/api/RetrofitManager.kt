@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.NullPointerException
 import java.util.concurrent.TimeUnit
 
 class RetrofitManager private constructor() {
@@ -28,7 +29,7 @@ class RetrofitManager private constructor() {
         }
     }
 
-    fun getDefaultRetrofit(): Retrofit {
+    fun  getDefaultRetrofit(): Retrofit {
 
         val interceptor = Interceptor { chain ->
             val request = chain.request().newBuilder()
@@ -42,7 +43,7 @@ class RetrofitManager private constructor() {
             OkHttpClient.Builder().addInterceptor(interceptor)
                 // .addInterceptor(ConnectivityInterceptor(baseContext))
                 .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(200, TimeUnit.SECONDS);
+                .readTimeout(200, TimeUnit.SECONDS)
 
         val logInterceptor = HttpLoggingInterceptor()
         logInterceptor.level = HttpLoggingInterceptor.Level.BODY

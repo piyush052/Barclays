@@ -21,7 +21,6 @@ class RecommendationAdapter(var context: Context, var list: List<Quote>, private
           val stockName = itemView.findViewById<TextView>(R.id.stockName)
           val percentChange = itemView.findViewById<TextView>(R.id.percentChange)
           val parentLayout = itemView.findViewById<LinearLayout>(R.id.parentLayout)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendationViewHolder {

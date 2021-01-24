@@ -69,6 +69,7 @@ class SearchAdapter (private val context: Context, var list : ArrayList<Quote>, 
     interface ItemClickListener{
         fun onClick(position: Int)
         fun onWatchListClick(isAdded: Boolean)
+
     }
 
 }
