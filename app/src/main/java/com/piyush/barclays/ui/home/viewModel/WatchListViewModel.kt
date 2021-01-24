@@ -7,6 +7,7 @@ import com.piyush.barclays.models.Watchlist
 class WatchListViewModel : MyBaseViewModel() {
     var emptyLiveData: MutableLiveData<Boolean> = MutableLiveData()
     var watchListViewModel: MutableLiveData<ArrayList<Watchlist>> = MutableLiveData()
+    var cloneListViewModel: MutableLiveData<ArrayList<Watchlist>> = MutableLiveData()
 
     fun getWatchListData(data: HashMap<String, Watchlist>) {
         if (data.isEmpty()) emptyLiveData.postValue(true)
@@ -23,7 +24,12 @@ class WatchListViewModel : MyBaseViewModel() {
             })
 
             watchListViewModel.postValue(list)
+            cloneListViewModel.postValue(list)
         }
+
+    }
+    fun filterWatchList(list: ArrayList<Watchlist>) {
+        watchListViewModel.postValue(list)
 
     }
 

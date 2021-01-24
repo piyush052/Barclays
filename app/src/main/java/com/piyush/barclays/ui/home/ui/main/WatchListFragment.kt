@@ -1,8 +1,12 @@
 package com.piyush.barclays.ui.home.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +29,7 @@ class WatchListFragment : MyBaseFragment(), RecommendationAdapter.ItemClickListe
     private lateinit var viewModel: WatchListViewModel
 
     private val watchList: ArrayList<Watchlist> = ArrayList()
+    private val cloneWatchList: ArrayList<Watchlist> = ArrayList()
     private var watchListAdapter: WatchListAdapter? = null
 
     override fun onErrorCalled(it: String?) {
@@ -45,6 +50,13 @@ class WatchListFragment : MyBaseFragment(), RecommendationAdapter.ItemClickListe
                 watchList.clear()
                 watchList.addAll(it)
                 watchListAdapter?.notifyDataSetChanged()
+            }
+        })
+
+        viewModel.cloneListViewModel.observe(this, {
+            if (activity != null) {
+                cloneWatchList.clear()
+                cloneWatchList.addAll(it)
             }
         })
     }
@@ -78,6 +90,8 @@ class WatchListFragment : MyBaseFragment(), RecommendationAdapter.ItemClickListe
         watchListRecyclerView.layoutManager = linearLayoutManager
         watchListAdapter = WatchListAdapter(activity!!, watchList, this)
         watchListRecyclerView.adapter = watchListAdapter
+
+        initEditText()
     }
 
     override fun onCreateView(
@@ -89,17 +103,47 @@ class WatchListFragment : MyBaseFragment(), RecommendationAdapter.ItemClickListe
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() = WatchListFragment()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initEditText() {
+
+        watchListSearchET.addTextChangedListener(object : TextWatcher {
+            val searchWatchList: ArrayList<Watchlist> = ArrayList()
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.toString().length >= 2) {
+                    searchWatchList.clear()
+                    cloneWatchList.forEach {
+                        if (it.cName != null && it.cName.toLowerCase().contains(p0.toString().toLowerCase())){
+                           searchWatchList.add(it)
+                        }
+                    }
+                    viewModel.filterWatchList(searchWatchList)
+                }else if(p0.toString().isEmpty()){
+                    viewModel.filterWatchList(cloneWatchList)
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+    }
+
+
     override fun onClick(position: Int) {
         val item = watchList[position]
-        super.showProgress()
         if (item.symbol == null) {
-            showSnackbar("Could not able to fetch the details")
-        } else
+            showSnackbar(resources.getString(R.string.could_not))
+        } else {
+            super.showProgress()
             item.symbol.let { viewModel.searchStockDetails(it) }
+        }
+
     }
 }
