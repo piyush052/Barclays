@@ -17,4 +17,7 @@ Screenshots
 
 </p>
 
+APK Link
+https://github.com/piyush052/Barclays/blob/master/Barclays_app-debug.apk
+
 
