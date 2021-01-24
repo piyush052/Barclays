@@ -17,5 +17,6 @@
     <color name="loaderColor">#FFAC184A</color>
     <color name="red_btn">#E00000</color>
     <color name="hint_color">#636363</color>
+    <color name="view_color">#636363</color>
 
 </resources>

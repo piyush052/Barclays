@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -117,19 +118,17 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
             }
 
         })
-//        searchET.setOnTouchListener(OnTouchListener { v, event ->
-//            val DRAWABLE_LEFT = 0
-//            if (event.action == MotionEvent.ACTION_UP) {
-//                if (event.rawX >= searchET.left - searchET.getCompoundDrawables()
-//                        .get(DRAWABLE_LEFT).getBounds().width()
-//                ) {
-//                    // your action here
-//                    activity?.onBackPressed()
-//                    return@OnTouchListener true
-//                }
-//            }
-//            false
-//        })
+        searchET.setOnTouchListener(View.OnTouchListener { v, event ->
+            val DRAWABLE_LEFT = 0
+            if (event.action == MotionEvent.ACTION_UP) {
+                if(event.getX() <= (searchET.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())) {
+                    // your action here
+                    activity?.onBackPressed()
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
     }
 
     companion object {
@@ -145,9 +144,9 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
 
     override fun onWatchListClick(isAdded: Boolean) {
         if(isAdded) {
-            showSnackbar("Already added in the WatchList")
+            showSnackbar(resources.getString(R.string.already_added))
         }else{
-            showSnackbar("Added to the WatchList")
+            showSnackbar(resources.getString(R.string.added))
         }
     }
 }

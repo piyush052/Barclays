@@ -29,4 +29,6 @@
     <string name="_1_year">1 year</string>
     <string name="_5_year">5 year</string>
     <string name="search_watchlist">Search</string>
+    <string name="already_added">Already added in the WatchList</string>
+    <string name="added">Added to the WatchList</string>
 </resources>
