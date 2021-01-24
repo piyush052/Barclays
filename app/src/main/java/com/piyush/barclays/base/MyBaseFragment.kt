@@ -146,13 +146,12 @@ abstract class MyBaseFragment : Fragment() {
         }
     }
 
-
     fun showSnackbar(text: String, errorMessageType: ErrorMessageType = ErrorMessageType.snackbar) {
         mBaseView?.let {
             val snackbar = Snackbar.make(activity?.findViewById(android.R.id.content)!!, text, Snackbar.LENGTH_LONG)
             snackbar.duration = 4000
             val snackbarView = snackbar.view
-            var snackbarBg = R.color.black
+            var snackbarBg = R.color.colorPrimary
             var snackbarTextColor = R.color.secondary
             activity?.let {
                 if (errorMessageType == ErrorMessageType.snackbarError) {

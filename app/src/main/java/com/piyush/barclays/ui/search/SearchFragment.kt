@@ -92,7 +92,7 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
             false
         )
         searchRecyclerView.layoutManager = linearLayoutManager
-        searchAdapter = SearchAdapter(searchList, this)
+        searchAdapter = SearchAdapter(activity!!, searchList, this)
         searchRecyclerView.adapter = searchAdapter
     }
 
@@ -141,5 +141,13 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
         val item = searchList[position]
         super.showProgress()
         item.symbol?.let { viewModel.searchStockDetails(it) }
+    }
+
+    override fun onWatchListClick(isAdded: Boolean) {
+        if(isAdded) {
+            showSnackbar("Already added in the WatchList")
+        }else{
+            showSnackbar("Added to the WatchList")
+        }
     }
 }

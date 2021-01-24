@@ -3,9 +3,13 @@ package com.piyush.barclays.api
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.piyush.barclays.constants.AppConstants
+import com.piyush.barclays.models.Watchlist
 
-class SharedPrefManager (context: Context) : ContextWrapper(context) {
+
+class SharedPrefManager private constructor(context: Context) : ContextWrapper(context) {
 
     companion object {
         private const val PREFERENCE_FILE = "BarclaysPref"
@@ -23,23 +27,28 @@ class SharedPrefManager (context: Context) : ContextWrapper(context) {
 
         private fun initManager(context: Context) {
             sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_FILE, Context.MODE_PRIVATE)
+                PREFERENCE_FILE, Context.MODE_PRIVATE
+            )
             INSTANCE = SharedPrefManager(context)
         }
     }
 
-    fun isLoggedIn(): Boolean {
-        val accessToken:String? = sharedPreferences.getString(
-            AppConstants.LOGIN_ACCESS_TOKEN , "")
-        if(accessToken.isNullOrEmpty()){
-            return false
+    fun getWatchListData(): HashMap<String, Watchlist> {
+        val storedHashMapString:String? = sharedPreferences.getString(
+            AppConstants.WATCHLIST_DATA, ""
+        )
+        if(storedHashMapString.isNullOrEmpty()){
+            return HashMap<String, Watchlist>()
         }
-        return true
+
+        val type = object : TypeToken<HashMap<String?, Watchlist>?>() {}.type
+        return Gson().fromJson(storedHashMapString, type)
     }
 
 
-    fun setLoginData(data :String) {
-        getInstance(baseContext).setPreference( AppConstants.LOGIN_ACCESS_TOKEN , data)
+    fun setWatchListData(data: HashMap<String, Watchlist>) {
+        val da = Gson().toJson(data)
+        getInstance(baseContext).setPreference(AppConstants.WATCHLIST_DATA, da)
     }
 
 

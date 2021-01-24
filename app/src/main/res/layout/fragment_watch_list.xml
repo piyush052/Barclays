@@ -23,7 +23,7 @@
             android:drawablePadding="@dimen/_8dp"
             android:padding="@dimen/_8dp"
             android:background="@drawable/search_edit_text_background"
-            android:hint="@string/search"
+            android:hint="@string/search_watchlist"
 
             />
         <androidx.recyclerview.widget.RecyclerView

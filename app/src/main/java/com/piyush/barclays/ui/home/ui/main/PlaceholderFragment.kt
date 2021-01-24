@@ -31,11 +31,13 @@ class PlaceholderFragment : MyBaseFragment(), RecommendationAdapter.ItemClickLis
 
     override fun initObservers() {
         viewModel.recomondationLiveData.observe(this, Observer {
+            if(activity!=null){
             recomondationList.clear()
             recomondationList.addAll(it)
             homeRecyclerView.visibility= View.VISIBLE
             emptyTextFra.visibility = View.GONE
             recomendationAdapter?.notifyDataSetChanged()
+            }
 
         })
         viewModel.emptyLiveData.observe(this, Observer {

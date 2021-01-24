@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.piyush.barclays.R
 import com.piyush.barclays.response.recomondation.Quote
 
-class RecommendationAdapter(var context: Context, var list: List<Quote>, val cliclListener:ItemClickListener ) :
+class RecommendationAdapter(var context: Context, var list: List<Quote>, private val clickListener:ItemClickListener ) :
     RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
 
 
@@ -43,7 +43,7 @@ class RecommendationAdapter(var context: Context, var list: List<Quote>, val cli
         holder.percentChange.text = list[position].postMarketChange.toString()
 
         holder.parentLayout.setOnClickListener {
-            cliclListener.onClick(position)
+            clickListener.onClick(position)
         }
     }
 
