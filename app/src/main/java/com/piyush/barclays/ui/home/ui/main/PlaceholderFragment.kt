@@ -70,7 +70,7 @@ class PlaceholderFragment : MyBaseFragment(), RecommendationAdapter.ItemClickLis
 
     override fun onResume() {
         super.onResume()
-        //viewModel.getRecommendation()
+        viewModel.getRecommendation()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

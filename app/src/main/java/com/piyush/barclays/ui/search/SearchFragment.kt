@@ -131,6 +131,11 @@ class SearchFragment : MyBaseFragment(), SearchAdapter.ItemClickListener {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        showKeyboard()
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = SearchFragment()
